@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesan Buat Cantik</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fdf2f8;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #e91e63;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #e91e63;
+      color: white;
+      cursor: pointer;
+    }
+    #videoContainer {
+      display: none;
+      margin-top: 30px;
+    }
+    video {
+      max-width: 80%;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>HALOOOOO</h1>
+  <button onclick="showVideo()">diklik tombol ini ya cantik!!</button>
+
+  <div id="videoContainer">
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Browser kamu nggak support video.
+    </video>
+  </div>
+
+  <script>
+    function showVideo() {
+      document.getElementById('videoContainer').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
