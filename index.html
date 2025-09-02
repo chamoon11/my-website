@@ -12,9 +12,12 @@
       height: 100vh;
       background: #fdf2f8;
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
     h1 {
       color: #e91e63;
+      position: relative;
+      z-index: 2;
     }
     button {
       margin-top: 20px;
@@ -25,30 +28,45 @@
       background-color: #e91e63;
       color: white;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background-color: #d81b60;
+      position: relative;
+      z-index: 2;
     }
     #videoContainer {
       display: none;
       margin-top: 30px;
-      animation: fadeIn 1s ease-in-out;
+      z-index: 2;
+      position: relative;
     }
     video {
       max-width: 80%;
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* 🌸 bunga-bunga */
+    .flower {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: bloom 5s linear infinite;
+    }
+    @keyframes bloom {
+      0% {
+        transform: scale(0) translate(0,0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1) translate(var(--x), var(--y));
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
   <h1>HALOOOOO</h1>
-  <button id="tombolCantik">diklik tombol ini ya cantik!!</button>
+  <button onclick="showVideo()">diklik tombol ini ya cantik!!</button>
 
   <div id="videoContainer">
     <video controls>
@@ -58,9 +76,27 @@
   </div>
 
   <script>
-    document.getElementById("tombolCantik").addEventListener("click", function() {
-      document.getElementById("videoContainer").style.display = "block";
-    });
+    function showVideo() {
+      document.getElementById('videoContainer').style.display = 'block';
+    }
+
+    // 🌸 bikin bunga terus-menerus
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.style.left = Math.random() * window.innerWidth + "px";
+      flower.style.top = Math.random() * window.innerHeight + "px";
+      flower.style.setProperty("--x", (Math.random() - 0.5) * 200 + "px");
+      flower.style.setProperty("--y", (Math.random() - 0.5) * 200 + "px");
+      
+      document.body.appendChild(flower);
+      
+      setTimeout(() => {
+        flower.remove();
+      }, 5000);
+    }
+
+    setInterval(createFlower, 300);
   </script>
 </body>
 </html>
